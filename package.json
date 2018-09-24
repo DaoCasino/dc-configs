@@ -1,0 +1,20 @@
+{
+  "name": "dc-configs",
+  "version": "1.0.0",
+  "description": "DAO.Casino configurations",
+  "main": "./lib/index",
+  "scripts": {
+    "build": "npm-run-all typescript",
+    "clean": "rimraf lib",
+    "typescript": "tsc --build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0"
+
+}
