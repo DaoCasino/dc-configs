@@ -1,5 +1,5 @@
 import path from "path";
-import { payChannelContract, ERC20, ContractInfo } from "./contracts";
+import { payChannelContract, ERC20 } from "./contracts";
 // export interface ContractInfo {
 //   abi: { [key: string]: any };
 //   address: string;
@@ -24,7 +24,10 @@ import { payChannelContract, ERC20, ContractInfo } from "./contracts";
 // const ERC20: ContractInfo = readContract("ERC20");
 
 // const payChannelContract = readContract("PAY_CHANNEL_CONTRACT");
-
+export interface ContractInfo {
+  abi: { [key: string]: any };
+  address: string;
+}
 export interface IConfig {
   name: string;
   signalServersSwarm: string[];
