@@ -25,7 +25,7 @@ import { payChannelContract, ERC20 } from "./contracts";
 
 // const payChannelContract = readContract("PAY_CHANNEL_CONTRACT");
 export interface ContractInfo {
-  abi: { [key: string]: any };
+  abi: any[];
   address: string;
 }
 export interface IConfig {
@@ -65,6 +65,9 @@ export const config: IConfig = {
   web3HttpProviderUrl:
     process.env.WEB_HTTP_PROVIDER_URL ||
     "https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl",
-  DAppsPath: path.join(path.resolve(), process.env.DAPPS_PATH),
+  DAppsPath: path.join(
+    path.resolve() || "",
+    process.env.DAPPS_PATH || "data/dapps"
+  ),
   privateKey: process.env.ACCOUNT_PRIVATE_KEY
 };
