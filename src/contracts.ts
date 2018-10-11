@@ -18,5 +18,9 @@ const ERC20: ContractInfo = {
   address: require(contractsDataPaths.addresses).ERC20,
   abi: require(contractsDataPaths.abi + 'ERC20.json').abi
 };
+const Dice: ContractInfo = {
+  address: require(contractsDataPaths.addresses).Dice,
+  abi: require(contractsDataPaths.abi + 'Dice.json').abi
+};
 
-export { ERC20 };
+export { ERC20, Dice };
