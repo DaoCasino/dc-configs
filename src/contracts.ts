@@ -15,12 +15,13 @@ if (process.env.DC_NETWORK === 'local') {
 }
 
 const ERC20: ContractInfo = {
-  address: require(contractsDataPaths.addresses).ERC20,
-  abi: require(contractsDataPaths.abi + 'ERC20.json').abi
+  address: '0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57',
+
+  abi: require('../jsonData/contractsABI/ERC20.json').abi
 };
 const Dice: ContractInfo = {
-  address: require(contractsDataPaths.addresses).Dice,
-  abi: require(contractsDataPaths.abi + 'Dice.json').abi
+  address: '0xf4dac7a329bcabc02c62d438d1f2dd226680b6f6',
+  abi: require('../jsonData/contractsABI/Dice.json').abi
 };
 
 export { ERC20, Dice };
