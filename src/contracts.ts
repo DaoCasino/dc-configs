@@ -1,10 +1,12 @@
 import { ContractInfo } from './index';
 
+// Ropsten by default
 let contractsDataPaths = {
   addresses: '../jsonData/addresses.json',
   abi: '../jsonData/contractsABI/'
 };
 
+// Contracts from local testrpc
 if (process.env.DC_NETWORK === 'local') {
   contractsDataPaths = {
     addresses: '../../dc-protocol/v_0.1/build/addresses.json',

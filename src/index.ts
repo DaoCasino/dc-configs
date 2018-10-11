@@ -1,46 +1,46 @@
-import path from 'path';
-import { ERC20 } from './contracts';
+import path      from 'path'
+import { ERC20 } from './contracts'
 
 export interface ContractInfo {
-  abi: any[];
-  address: string;
+  address : string
+  abi     : any[]
 }
+
 export interface IConfig {
-  name: string;
-  signalServersSwarm: string[];
-  contracts: {
-    ERC20: ContractInfo;
-  };
-  privateKey: string;
-  gasPrice: number;
-  gasLimit: number;
-  waitForConfirmations: number;
-  rules: { depositX: number };
-  web3HttpProviderUrl: string;
-  faucetServerUrl: string;
-  DAppsPath: string;
+  privateKey           : string
+  web3HttpProviderUrl  : string
+  waitForConfirmations : number
+  contracts            : { ERC20: ContractInfo }
+  gasPrice             : number
+  gasLimit             : number
+  DAppsPath            : string
+  signalServersSwarm   : string[]
 }
+
+// Infura Ropsten provide by default 
+let rpcUrl:string = 'https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl'
+// in local(dev) env
+if (process.env.DC_NETWORK === 'local') rpcUrl = 'http://0.0.0.0:8545'
+// provider set directly by env
+if (process.env.WEB_HTTP_PROVIDER_URL)  rpcUrl = process.env.WEB_HTTP_PROVIDER_URL
+
 
 export const config: IConfig = {
-  name: 'sdk',
+  privateKey : process.env.ACCOUNT_PRIVATE_KEY,
 
-  signalServersSwarm: [
-    '/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/',
-    '/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/'
-  ],
-
-  contracts: { ERC20 },
-  waitForConfirmations: 2,
-  gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
-  gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
-  rules: { depositX: 2 },
-  faucetServerUrl: 'https://faucet.dao.casino/',
-  web3HttpProviderUrl:
-    process.env.WEB_HTTP_PROVIDER_URL ||
-    'https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl',
-  DAppsPath: path.join(
+  web3HttpProviderUrl  : rpcUrl,
+  waitForConfirmations : 2,
+  contracts : { ERC20 },
+  gasPrice  : Number(process.env.GAS_PRICE) || 40 * 1000000000,
+  gasLimit  : Number(process.env.GAS_LIMIT) || 40 * 100000,
+  
+  DAppsPath : path.join(
     path.resolve() || '',
     process.env.DAPPS_PATH || 'data/dapps'
   ),
-  privateKey: process.env.ACCOUNT_PRIVATE_KEY
+  
+  signalServersSwarm: [
+    '/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/',
+    '/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/'
+  ]
 };
