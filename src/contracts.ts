@@ -1,12 +1,20 @@
 import { ContractInfo } from './index';
 
-const payChannelContract: ContractInfo = {
-  address: '0xF4daC7a329BcAbC02C62d438D1f2dD226680B6F6',
-  abi: require('../jsonData/contractsABI/Dice.json').abi
+let contractsDataPaths = {
+  addresses: '../jsonData/addresses.json',
+  abi: '../jsonData/contractsABI/'
 };
 
+if (process.env.DC_NETWORK === 'local') {
+  contractsDataPaths = {
+    addresses: '../../dc-protocol/v_0.1/build/addresses.json',
+    abi: '../../dc-protocol/v_0.1/build/contracts/'
+  };
+}
+
 const ERC20: ContractInfo = {
-  address: '0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57',
-  abi: require('../jsonData/contractsABI/ERC20.json').abi
+  address: require(contractsDataPaths.addresses).ERC20,
+  abi: require(contractsDataPaths.abi + 'ERC20.json').abi
 };
-export { payChannelContract, ERC20 };
+
+export { ERC20 };
