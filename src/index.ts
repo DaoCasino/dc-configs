@@ -29,7 +29,6 @@ if (process.env.DC_NETWORK!=='ropsten' && process.env.WEB_HTTP_PROVIDER_URL) {
   rpcUrl = process.env.WEB_HTTP_PROVIDER_URL
 }
 
-
 export const config: IConfig = {
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
 
