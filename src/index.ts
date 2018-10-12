@@ -21,11 +21,14 @@ export interface IConfig {
 // Infura Ropsten provide by default
 let rpcUrl: string = 'https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl'
 // in local(dev) env
-if (process.env.DC_NETWORK === 'local') rpcUrl = 'http://0.0.0.0:8545'
+if (process.env.DC_NETWORK === 'local') {
+  rpcUrl = 'http://0.0.0.0:8545'
+}
 // provider set directly by env
-if (process.env.WEB_HTTP_PROVIDER_URL) {
+if (process.env.DC_NETWORK!=='ropsten' && process.env.WEB_HTTP_PROVIDER_URL) {
   rpcUrl = process.env.WEB_HTTP_PROVIDER_URL
 }
+
 
 export const config: IConfig = {
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
