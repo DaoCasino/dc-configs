@@ -1,50 +1,38 @@
-import path from 'path'
-import { ERC20 } from './contracts'
+import path from "path"
+import { IConfig, IBlockchainNetworkConfig } from "./interfaces/IConfig"
+import {
+  blockchainNetworkConfigs,
+  BlockchainNetwork
+} from "./blockchainNetworks"
 
-export interface ContractInfo {
-  address: string
-  abi: any[]
+const blockchain: BlockchainNetwork = (process.env.DC_NETWORK ||
+  "ropsten") as BlockchainNetwork
+
+const blockchainConfig: IBlockchainNetworkConfig = blockchainNetworkConfigs.get(
+  blockchain
+)
+
+if (!blockchainConfig) {
+  throw new Error(
+    "Blockchain network not configured! Please put one of local | ropsten | rinkeby | mainnet to env.DC_NETWORK"
+  )
 }
-
-export interface IConfig {
-  privateKey           : string
-  web3HttpProviderUrl  : string
-  waitForConfirmations : number
-  gasPrice             : number
-  gasLimit             : number
-  DAppsPath            : string
-  signalServersSwarm   : string[]
-
-  contracts:{ ERC20: ContractInfo }
-}
-
-// Infura Ropsten provide by default
-let rpcUrl: string = 'https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl'
-// in local(dev) env
-if (process.env.DC_NETWORK === 'local') {
-  rpcUrl = 'http://0.0.0.0:8545'
-}
-// provider set directly by env
-if (process.env.DC_NETWORK!=='ropsten' && process.env.WEB_HTTP_PROVIDER_URL) {
-  rpcUrl = process.env.WEB_HTTP_PROVIDER_URL
-}
-
 export const config: IConfig = {
+  blockchain,
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
-
-  web3HttpProviderUrl: rpcUrl,
   waitForConfirmations: 2,
-  contracts: { ERC20 },
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
   gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
 
   DAppsPath: path.join(
-    path.resolve() || '',
-    process.env.DAPPS_PATH || 'data/dapps'
+    path.resolve() || "",
+    process.env.DAPPS_PATH || "data/dapps"
   ),
 
   signalServersSwarm: [
-    '/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/',
-    '/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/'
-  ]
+    "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
+    "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
+  ],
+  ...blockchainConfig
 }
+export * from "./interfaces/IConfig"
