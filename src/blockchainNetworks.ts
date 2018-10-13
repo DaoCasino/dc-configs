@@ -50,7 +50,7 @@ export const blockchainNetworkConfigs: Map<
           abi: ERC20.abi
         }
       },
-      web3HttpProviderUrl: "https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl"
+      web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl"
     }
   ],
   [

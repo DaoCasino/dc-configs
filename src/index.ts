@@ -18,6 +18,7 @@ if (!blockchainConfig) {
   )
 }
 export const config: IConfig = {
+  platformId: process.env.PLATFORM_ID || "DC_Platform",
   blockchain,
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
   waitForConfirmations: 2,

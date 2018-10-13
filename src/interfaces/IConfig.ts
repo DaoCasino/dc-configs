@@ -15,6 +15,7 @@ interface IBlockchainNetworkConfig {
 }
 
 interface IConfig extends IBlockchainNetworkConfig {
+  platformId: string
   blockchain: BlockchainNetwork
   privateKey: string
   waitForConfirmations: number
