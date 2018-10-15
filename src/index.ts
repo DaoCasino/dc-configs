@@ -5,11 +5,11 @@ import {
   BlockchainNetwork
 } from "./blockchainNetworks"
 
-const blockchain: BlockchainNetwork = (process.env.DC_NETWORK ||
+const blockchainNetwork: BlockchainNetwork = (process.env.DC_NETWORK ||
   "ropsten") as BlockchainNetwork
 
 const blockchainConfig: IBlockchainNetworkConfig = blockchainNetworkConfigs.get(
-  blockchain
+  blockchainNetwork
 )
 
 if (!blockchainConfig) {
@@ -19,7 +19,7 @@ if (!blockchainConfig) {
 }
 export const config: IConfig = {
   platformId: process.env.PLATFORM_ID || "DC_Platform",
-  blockchain,
+  blockchainNetwork,
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
   waitForConfirmations: 2,
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
