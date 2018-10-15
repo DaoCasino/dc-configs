@@ -46,10 +46,12 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
+          address: "0x995cf44c0bdff07a9b6e171802cdc83d3c4add82",
           abi: ERC20.abi
         }
       },
+      gasPrice: Number(process.env.GAS_PRICE) || 40,
+      gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
       web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl"
     }
   ],
