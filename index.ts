@@ -1,2 +1,1 @@
-export * from "./src/index";
-export * from "./src/contracts";
+export * from "./src/index"
