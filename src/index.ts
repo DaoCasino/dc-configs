@@ -26,6 +26,7 @@ export const config: IConfig = {
   blockchainNetwork,
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
   waitForConfirmations: 2,
+  minimumEth: 0.001,
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
   gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
 
