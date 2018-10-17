@@ -1,4 +1,4 @@
-This repository stores logic required to se up and running a minimum viable game.
+This repository stores logic required to set up and running a minimum viable game.
 
 ## Global DAO.Casino Variables
 |   Variable   |Description      |Type |
