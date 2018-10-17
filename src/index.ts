@@ -37,3 +37,4 @@ export const config: IConfig = {
   ...blockchainConfig
 }
 export * from "./interfaces/IConfig"
+export * from "./blockchainNetworks"
