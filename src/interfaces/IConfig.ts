@@ -20,6 +20,7 @@ interface IConfig extends IBlockchainNetworkConfig {
   privateKey: string
   waitForConfirmations: number
   minimumEth: number
+  walletName: string
   gasPrice: number
   gasLimit: number
   DAppsPath: string
