@@ -5,10 +5,14 @@ import {
   BlockchainNetwork
 } from "./blockchainNetworks"
 
+export const getBlockChainConfig = (
+  blockchain: BlockchainNetwork
+): IBlockchainNetworkConfig => {
+  return blockchainNetworkConfigs.get(blockchain)
+}
 const blockchainNetwork: BlockchainNetwork = (process.env.DC_NETWORK ||
   "ropsten") as BlockchainNetwork
-
-const blockchainConfig: IBlockchainNetworkConfig = blockchainNetworkConfigs.get(
+const blockchainConfig: IBlockchainNetworkConfig = getBlockChainConfig(
   blockchainNetwork
 )
 
@@ -38,3 +42,4 @@ export const config: IConfig = {
   ...blockchainConfig
 }
 export * from "./interfaces/IConfig"
+export * from "./blockchainNetworks"
