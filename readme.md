@@ -3,7 +3,7 @@ This repository stores configuration settings behind a minimum viable game.
 ## Global DAO.Casino Variables
 |   Variable   |Description      |Type |
 | ---- | ---- | ---- |
-|process.env.DC_NETWORK |  Blockchain network, e.g. Ropsten, local. Supported networks are specified in (blockchainnetworks.ts)[https://github.com/DaoCasino/dc-monorepo/blob/development/packages/dc-configs/src/blockchainNetworks.ts]    |String|
+|process.env.DC_NETWORK |  Blockchain network, e.g. Ropsten, local. Supported networks are specified in (blockchainnetworks.ts)[[https://github.com/DaoCasino/dc-monorepo/blob/development/packages/dc-configs/src/blockchainNetworks.ts]]    |String|
 |process.env.PLATFORM_ID     |      Platform ID |String|
 |process.env.GAS_PRICE   |      |Numeric|
 |process.env.GAS_LIMIT   |      |Numeric|
