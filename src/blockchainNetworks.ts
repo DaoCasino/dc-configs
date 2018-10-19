@@ -1,4 +1,4 @@
-import { contractAddresses } from "dc-protocol"
+
 import { IBlockchainNetworkConfig } from "./interfaces/IConfig"
 
 import ERC20 from "./jsonData/contractsABI/ERC20.json"
@@ -14,7 +14,7 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: contractAddresses.ERC20,
+          address: '0x345cA3e014Aaf5dcA488057592ee47305D9B3e10', // "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
           abi: ERC20.abi
         }
       },
