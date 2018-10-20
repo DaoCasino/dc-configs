@@ -1,4 +1,3 @@
-
 import { IBlockchainNetworkConfig } from "./interfaces/IConfig"
 
 import ERC20 from "./jsonData/contractsABI/ERC20.json"
@@ -14,7 +13,7 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
+          address: "0x8f0483125FCb9aaAEFA9209D8E9d7b9C8B9Fb90F",
           abi: ERC20.abi
         }
       },
@@ -29,7 +28,7 @@ export const blockchainNetworkConfigs: Map<
       web3HttpProviderUrl: "https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl",
       waitForConfirmations: 2,
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
-      gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
+      gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
       contracts: {
         ERC20: {
           address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
@@ -51,7 +50,7 @@ export const blockchainNetworkConfigs: Map<
         }
       },
       gasPrice: Number(process.env.GAS_PRICE) || 1000 * 1000 * 1000,
-      gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
+      gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
       web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl"
     }
   ],
