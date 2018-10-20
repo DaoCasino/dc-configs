@@ -13,7 +13,7 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: "0x8f0483125FCb9aaAEFA9209D8E9d7b9C8B9Fb90F",
+          address: require('../../dc-protocol/v_0.1/build/addresses.json').ERC20,
           abi: ERC20.abi
         }
       },
