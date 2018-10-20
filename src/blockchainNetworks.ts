@@ -13,7 +13,7 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
+          address: "0x8f0483125FCb9aaAEFA9209D8E9d7b9C8B9Fb90F",
           abi: ERC20.abi
         }
       },
