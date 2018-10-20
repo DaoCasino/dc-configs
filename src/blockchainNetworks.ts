@@ -39,9 +39,6 @@ export const blockchainNetworkConfigs: Map<
   ],
   [
     "rinkeby",
-
-    // TODO put correct value
-
     {
       contracts: {
         ERC20: {
@@ -51,7 +48,8 @@ export const blockchainNetworkConfigs: Map<
       },
       gasPrice: Number(process.env.GAS_PRICE) || 1000 * 1000 * 1000,
       gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
-      web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl"
+      web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl",
+      waitForConfirmations: 2
     }
   ],
   [
