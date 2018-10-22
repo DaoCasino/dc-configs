@@ -13,7 +13,8 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: require('../../dc-protocol/v_0.1/build/addresses.json').ERC20,
+          address: require("../../dc-protocol/v_0.1/build/addresses.json")
+            .ERC20,
           abi: ERC20.abi
         }
       },
@@ -46,7 +47,7 @@ export const blockchainNetworkConfigs: Map<
           abi: ERC20.abi
         }
       },
-      gasPrice: Number(process.env.GAS_PRICE) || 1000 * 1000 * 1000,
+      gasPrice: Number(process.env.GAS_PRICE) || 2000 * 1000 * 1000,
       gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
       web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl",
       waitForConfirmations: 2
