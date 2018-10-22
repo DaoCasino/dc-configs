@@ -26,6 +26,7 @@ export const config: IConfig = {
   blockchainNetwork,
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
   waitForConfirmations: 2,
+  standartWalletPass: process.env.STANDART_WALLET_PASS || '23WDSksiuuyto!',
   minimumEth: 0.001,
   walletName: 'daocasino_wallet',
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
