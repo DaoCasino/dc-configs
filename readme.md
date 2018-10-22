@@ -1,4 +1,5 @@
 This repository stores configuration settings behind a minimum viable game. These settings are implemented as an interface that can be exported/imported to your game. This approach ensures that the code is edited at a single point and later reused whenever you may need it.
+
 See the [IConfig.ts](https://github.com/DaoCasino/dc-monorepo/blob/development/packages/dc-configs/src/interfaces/IConfig.ts) file for the source code.
 
 ## Global DAO.Casino Variables
