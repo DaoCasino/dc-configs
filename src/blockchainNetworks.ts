@@ -4,6 +4,13 @@ import ERC20 from "./jsonData/contractsABI/ERC20.json"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
+let localERC20Address = ""
+try {
+  // tslint:disable-next-line:no-var-requires
+  localERC20Address = require("../../dc-protocol/v_0.1/build/addresses.json")
+    .ERC20
+} catch (error) {}
+
 export const blockchainNetworkConfigs: Map<
   BlockchainNetwork,
   IBlockchainNetworkConfig
@@ -13,8 +20,7 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: require("../../dc-protocol/v_0.1/build/addresses.json")
-            .ERC20,
+          address: localERC20Address,
           abi: ERC20.abi
         }
       },
