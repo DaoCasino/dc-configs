@@ -4,6 +4,13 @@ import ERC20 from "./jsonData/contractsABI/ERC20.json"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
+let localERC20Address = ""
+try {
+  // tslint:disable-next-line:no-var-requires
+  localERC20Address = require("../../dc-protocol/v_0.1/build/addresses.json")
+    .ERC20
+} catch (error) {}
+
 export const blockchainNetworkConfigs: Map<
   BlockchainNetwork,
   IBlockchainNetworkConfig
@@ -13,7 +20,7 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: "0x8f0483125FCb9aaAEFA9209D8E9d7b9C8B9Fb90F",
+          address: localERC20Address,
           abi: ERC20.abi
         }
       },
@@ -46,7 +53,7 @@ export const blockchainNetworkConfigs: Map<
           abi: ERC20.abi
         }
       },
-      gasPrice: Number(process.env.GAS_PRICE) || 1000 * 1000 * 1000,
+      gasPrice: Number(process.env.GAS_PRICE) || 2000 * 1000 * 1000,
       gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
       web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl",
       waitForConfirmations: 2
