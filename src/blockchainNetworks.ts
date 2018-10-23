@@ -32,7 +32,8 @@ export const blockchainNetworkConfigs: Map<
   [
     "ropsten",
     {
-      web3HttpProviderUrl: "https://ropsten.infura.io/JCnK5ifEPH9qcQkX0Ahl",
+      web3HttpProviderUrl:
+        "https://ropsten.infura.io/v3/f1848473a0934a5287c8f7d0968a940a",
       waitForConfirmations: 2,
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
       gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
