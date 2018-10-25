@@ -7,7 +7,7 @@ export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 let localERC20Address = ""
 try {
   // tslint:disable-next-line:no-var-requires
-  localERC20Address = require("../../dc-protocol/v_0.1/build/addresses.json")
+  localERC20Address = require("../../dc-protocol/src/build/addresses.json")
     .ERC20
 } catch (error) {}
 

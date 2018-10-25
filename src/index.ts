@@ -11,7 +11,7 @@ export const getBlockChainConfig = (
   return blockchainNetworkConfigs.get(blockchain)
 }
 const blockchainNetwork: BlockchainNetwork = (process.env.DC_NETWORK ||
-  "local") as BlockchainNetwork
+  "ropsten") as BlockchainNetwork
 const blockchainConfig: IBlockchainNetworkConfig = getBlockChainConfig(
   blockchainNetwork
 )
