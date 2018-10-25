@@ -61,7 +61,7 @@ export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
 class ConfigStore {
   static default: IConfig
 }
-export const setConfig = (configOptions: IConfigOptions = {}) => {
+export const setDefaultConfig = (configOptions: IConfigOptions = {}) => {
   const result = getConfig(configOptions)
   ConfigStore.default = result
   return result
