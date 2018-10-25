@@ -6,7 +6,6 @@ interface ContractInfo {
 }
 
 interface IBlockchainNetworkConfig {
-  privateKey?: string
   web3HttpProviderUrl: string
   waitForConfirmations?: number
   gasPrice?: number
@@ -14,19 +13,23 @@ interface IBlockchainNetworkConfig {
   contracts: { ERC20: ContractInfo }
 }
 
-interface IConfig extends IBlockchainNetworkConfig {
-  platformId: string
-  blockchainNetwork: BlockchainNetwork
-  privateKey: string
+interface IConfig extends IBlockchainNetworkConfig, IBaseConfig {
   waitForConfirmations: number
-  standartWalletPass: string
-  minimumEth: number
-  walletName: string
   gasPrice: number
   gasLimit: number
+}
+interface IBaseConfig {
+  platformId: string
+  privateKey: string
+  waitForConfirmations: number
+  blockchainNetwork: BlockchainNetwork
+  standartWalletPass: string
+  gasPrice: number
+  gasLimit: number
+  minimumEth: number
+  walletName: string
   DAppsPath: string
   signalServersSwarm: string[]
-  contracts: { ERC20: ContractInfo }
 }
 
-export { ContractInfo, IConfig, IBlockchainNetworkConfig }
+export { ContractInfo, IConfig, IBlockchainNetworkConfig, IBaseConfig }
