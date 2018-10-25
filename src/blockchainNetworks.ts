@@ -1,3 +1,4 @@
+import fetch from "node-fetch"
 import { IBlockchainNetworkConfig } from "./interfaces/IConfig"
 
 import ERC20 from "./jsonData/contractsABI/ERC20.json"
@@ -5,11 +6,20 @@ import ERC20 from "./jsonData/contractsABI/ERC20.json"
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
 let localERC20Address = ""
-try {
-  // tslint:disable-next-line:no-var-requires
-  localERC20Address = require("../../dc-protocol/src/build/addresses.json")
-    .ERC20
-} catch (error) {}
+
+const getLocalERC20 = async () => {
+  const addr = await fetch("http://localhost:8545/contracts")
+    .then(r => {
+      return r.json()
+    })
+    .then(r => {
+      localERC20Address = r.ERC20
+    })
+
+  return addr
+}
+
+getLocalERC20().catch(error => {})
 
 export const blockchainNetworkConfigs: Map<
   BlockchainNetwork,
@@ -24,7 +34,7 @@ export const blockchainNetworkConfigs: Map<
           abi: ERC20.abi
         }
       },
-      web3HttpProviderUrl: "http://0.0.0.0:8545",
+      web3HttpProviderUrl: "http://localhost:8545",
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
       gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000
     }
