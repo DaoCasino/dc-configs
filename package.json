@@ -1,6 +1,6 @@
 {
   "name": "dc-configs",
-  "version": "1.0.2",
+  "version": "0.1.0",
   "description": "DAO.Casino configurations",
   "main": "./lib/index",
   "scripts": {
