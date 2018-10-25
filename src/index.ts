@@ -45,6 +45,7 @@ const defaultConfig: IBaseConfig = {
   ),
 
   signalServersSwarm: [
+    "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/"
     "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
     "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
   ]
