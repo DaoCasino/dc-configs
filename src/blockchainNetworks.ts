@@ -1,26 +1,25 @@
-import fetch from 'node-fetch'
+import fetch from "node-fetch"
 import { IBlockchainNetworkConfig } from "./interfaces/IConfig"
 
 import ERC20 from "./jsonData/contractsABI/ERC20.json"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
+let localERC20Address = ""
 
-let localERC20Address = ''
-
-const getLocalERC20 = async ()=>{
-  const addr = await fetch('http://localhost:8545/contracts')
-  .then( r => {
-    return r.json()
-  })
-  .then( r => {
-    localERC20Address = r.ERC20
-  })
+const getLocalERC20 = async () => {
+  const addr = await fetch("http://localhost:8545/contracts")
+    .then(r => {
+      return r.json()
+    })
+    .then(r => {
+      localERC20Address = r.ERC20
+    })
 
   return addr
 }
-getLocalERC20()
 
+getLocalERC20().catch(error => {})
 
 export const blockchainNetworkConfigs: Map<
   BlockchainNetwork,
