@@ -5,21 +5,6 @@ import ERC20 from "./jsonData/contractsABI/ERC20.json"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
-let localERC20Address = ""
-
-const getLocalERC20 = async () => {
-  const addr = await fetch("http://localhost:8545/contracts")
-    .then(r => {
-      return r.json()
-    })
-    .then(r => {
-      localERC20Address = r.ERC20
-    })
-
-  return addr
-}
-
-getLocalERC20().catch(error => {})
 
 export const blockchainNetworkConfigs: Map<
   BlockchainNetwork,
@@ -30,7 +15,7 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: localERC20Address,
+          address: "http://localhost:8545/contracts->ERC20",
           abi: ERC20.abi
         }
       },
