@@ -12,20 +12,11 @@ const getLocalAddresses = (): Promise<{
   ERC20: string
 }> => {
   if (typeof window !== 'undefined') {
-    return window.fetch(
-      "http://localhost:8545/contracts",
-      {
-        method: 'get',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-    ).then(r => {
+    return window.fetch("http://127.0.0.1:8545/contracts",).then(r => {
       return r.json()
     })
   } else {
-    return fetch("http://localhost:8545/contracts").then(r => {
+    return fetch("http://127.0.0.1:8545/contracts").then(r => {
       return r.json()
     })
   }
@@ -50,7 +41,7 @@ export const blockchainNetworkConfigs: Map<
           }
         }))
       },
-      web3HttpProviderUrl: "http://0.0.0.0:8545",
+      web3HttpProviderUrl: "http://127.0.0.1:8545",
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
       gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000
     }
