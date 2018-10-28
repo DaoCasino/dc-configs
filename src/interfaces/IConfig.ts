@@ -4,13 +4,16 @@ interface ContractInfo {
   address: string
   abi: any[]
 }
-
+export interface Contracts {
+  ERC20: ContractInfo
+  Game?: ContractInfo
+}
 interface IBlockchainNetworkConfig {
   web3HttpProviderUrl: string
   waitForConfirmations?: number
   gasPrice?: number
   gasLimit?: number
-  contracts: { ERC20: ContractInfo }
+  getContracts: (() => Promise<Contracts> | Contracts)
 }
 
 interface IConfig extends IBlockchainNetworkConfig, IBaseConfig {
