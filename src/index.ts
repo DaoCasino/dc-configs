@@ -67,6 +67,7 @@ export const setDefaultConfig = (configOptions: IConfigOptions = {}) => {
   ConfigStore.default = result
   return result
 }
+
 if (!ConfigStore.default) {
   ConfigStore.default = getConfig()
 }

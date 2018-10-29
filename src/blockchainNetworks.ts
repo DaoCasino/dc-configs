@@ -1,25 +1,20 @@
 import fetch from "node-fetch"
-import { IBlockchainNetworkConfig } from "./interfaces/IConfig"
+import { IBlockchainNetworkConfig, Contracts } from "./interfaces/IConfig"
 
-import ERC20 from "./jsonData/contractsABI/ERC20.json"
+import ERC20Abi from "./jsonData/contractsABI/ERC20.json"
+
+import { Dice as GameAbi } from "./jsonData/Dice"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
-let localERC20Address = ""
-
-const getLocalERC20 = async () => {
-  const addr = await fetch("http://localhost:8545/contracts")
-    .then(r => {
-      return r.json()
-    })
-    .then(r => {
-      localERC20Address = r.ERC20
-    })
-
-  return addr
+const getLocalAddresses = (): Promise<{
+  Game: string
+  ERC20: string
+}> => {
+  return fetch("http://localhost:8545/contracts").then(r => {
+    return r.json()
+  })
 }
-
-getLocalERC20().catch(error => {})
 
 export const blockchainNetworkConfigs: Map<
   BlockchainNetwork,
@@ -28,11 +23,17 @@ export const blockchainNetworkConfigs: Map<
   [
     "local",
     {
-      contracts: {
-        ERC20: {
-          address: localERC20Address,
-          abi: ERC20.abi
-        }
+      getContracts: (): Promise<Contracts> => {
+        return getLocalAddresses().then(addresses => ({
+          ERC20: {
+            address: addresses.ERC20,
+            abi: ERC20Abi.abi
+          },
+          Game: {
+            address: addresses.Game,
+            abi: GameAbi.abi
+          }
+        }))
       },
       web3HttpProviderUrl: "http://localhost:8545",
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
@@ -47,23 +48,23 @@ export const blockchainNetworkConfigs: Map<
       waitForConfirmations: 2,
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
       gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
-      contracts: {
+      getContracts: () => ({
         ERC20: {
           address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
-          abi: ERC20.abi
+          abi: ERC20Abi.abi
         }
-      }
+      })
     }
   ],
   [
     "rinkeby",
     {
-      contracts: {
+      getContracts: () => ({
         ERC20: {
           address: "0x995cf44c0bdff07a9b6e171802cdc83d3c4add82",
-          abi: ERC20.abi
+          abi: ERC20Abi.abi
         }
-      },
+      }),
       gasPrice: Number(process.env.GAS_PRICE) || 2000 * 1000 * 1000,
       gasLimit: Number(process.env.GAS_LIMIT) || 4 * 100000,
       web3HttpProviderUrl: "https://rinkeby.infura.io/JCnK5ifEPH9qcQkX0Ahl",
@@ -74,12 +75,12 @@ export const blockchainNetworkConfigs: Map<
     "mainnet",
     // TODO put correct value
     {
-      contracts: {
+      getContracts: () => ({
         ERC20: {
           address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
-          abi: ERC20.abi
+          abi: ERC20Abi.abi
         }
-      },
+      }),
       web3HttpProviderUrl: "https://infura.io/JCnK5ifEPH9qcQkX0Ahl"
     }
   ]
