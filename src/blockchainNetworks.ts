@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+import fetch from "cross-fetch"
 import { IBlockchainNetworkConfig, Contracts } from "./interfaces/IConfig"
 
 import ERC20Abi from "./jsonData/contractsABI/ERC20.json"
