@@ -1,6 +1,6 @@
 {
   "name": "dc-configs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "DAO.Casino configurations",
   "main": "./lib/index",
   "scripts": {
@@ -14,7 +14,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "@types/node": "^10.11.7",
-    "node-fetch": "^2.2.0"
+    "cross-fetch": "^2.2.3"
   },
   "devDependencies": {
     "husky": "1.1.1",
