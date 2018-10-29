@@ -4,6 +4,7 @@ import {
   IBlockchainNetworkConfig,
   IBaseConfig
 } from "./interfaces/IConfig"
+import os from "os"
 import {
   blockchainNetworkConfigs,
   BlockchainNetwork
@@ -21,6 +22,10 @@ export const getBlockChainConfig = (
   }
   return blockchainConfig
 }
+let machineName
+try {
+  machineName = os.hostname()
+} catch (error) {}
 
 export interface IConfigOptions {
   blockchainNetwork?: BlockchainNetwork
@@ -30,7 +35,7 @@ export interface IConfigOptions {
 const envBlockchainNetwork: BlockchainNetwork =
   (process.env.DC_NETWORK as BlockchainNetwork) || "local"
 const defaultConfig: IBaseConfig = {
-  platformId: process.env.PLATFORM_ID || "DC_Platform",
+  platformId: process.env.PLATFORM_ID || machineName || "DC_Platform",
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
   blockchainNetwork: envBlockchainNetwork,
   standartWalletPass: process.env.STANDART_WALLET_PASS || "23WDSksiuuyto!",
