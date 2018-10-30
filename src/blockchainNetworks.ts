@@ -11,15 +11,9 @@ const getLocalAddresses = (): Promise<{
   Game: string
   ERC20: string
 }> => {
-  if (typeof window !== 'undefined') {
-    return window.fetch("http://127.0.0.1:8545/contracts",).then(r => {
-      return r.json()
-    })
-  } else {
-    return fetch("http://127.0.0.1:8545/contracts").then(r => {
-      return r.json()
-    })
-  }
+  return fetch("http://0.0.0.0:8545/contracts").then(r => {
+    return r.json()
+  })
 }
 
 export const blockchainNetworkConfigs: Map<
