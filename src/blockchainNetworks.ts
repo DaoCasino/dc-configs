@@ -11,7 +11,7 @@ const getLocalAddresses = (): Promise<{
   Game: string
   ERC20: string
 }> => {
-  return fetch("http://localhost:8545/contracts").then(r => {
+  return fetch("http://0.0.0.0:8545/contracts").then(r => {
     return r.json()
   })
 }
@@ -35,7 +35,7 @@ export const blockchainNetworkConfigs: Map<
           }
         }))
       },
-      web3HttpProviderUrl: "http://localhost:8545",
+      web3HttpProviderUrl: "http://127.0.0.1:8545",
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
       gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000
     }

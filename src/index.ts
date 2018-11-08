@@ -44,7 +44,7 @@ const defaultConfig: IBaseConfig = {
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
   gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
   waitForConfirmations: 2,
-  DAppsPath: path.join(
+  DAppsPath: process.env.DAPPS_FULL_PATH || path.join(
     path.resolve() || "",
     process.env.DAPPS_PATH || "data/dapps"
   ),
