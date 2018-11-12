@@ -7,11 +7,13 @@ import { Dice as GameAbi } from "./jsonData/Dice"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
-const getLocalAddresses = (): Promise<{
+const getLocalAddresses = (
+  httpAddress: string
+): Promise<{
   Game: string
   ERC20: string
 }> => {
-  return fetch("http://0.0.0.0:8545/contracts").then(r => {
+  return fetch(httpAddress).then(r => {
     return r.json()
   })
 }
@@ -23,17 +25,21 @@ export const blockchainNetworkConfigs: Map<
   [
     "local",
     {
-      getContracts: (): Promise<Contracts> => {
-        return getLocalAddresses().then(addresses => ({
-          ERC20: {
-            address: addresses.ERC20,
-            abi: ERC20Abi.abi
-          },
-          Game: {
-            address: addresses.Game,
-            abi: GameAbi.abi
-          }
-        }))
+      getContracts: (
+        web3HttpProviderUrl: string = "http://127.0.0.1:8545"
+      ): Promise<Contracts> => {
+        return getLocalAddresses(`${web3HttpProviderUrl}/contracts`).then(
+          addresses => ({
+            ERC20: {
+              address: addresses.ERC20,
+              abi: ERC20Abi.abi
+            },
+            Game: {
+              address: addresses.Game,
+              abi: GameAbi.abi
+            }
+          })
+        )
       },
       web3HttpProviderUrl: "http://127.0.0.1:8545",
       gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,

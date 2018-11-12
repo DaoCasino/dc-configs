@@ -11,7 +11,8 @@ import {
 } from "./blockchainNetworks"
 
 export const getBlockChainConfig = (
-  blockchain: BlockchainNetwork
+  blockchain: BlockchainNetwork,
+  customWeb3HttpProviderUrl: string = process.env.CUSTOM_WEB3_PROVIDER_URL
 ): IBlockchainNetworkConfig => {
   const blockchainConfig = blockchainNetworkConfigs.get(blockchain)
   if (!blockchainConfig) {
@@ -20,7 +21,14 @@ export const getBlockChainConfig = (
       Please put one of local | ropsten | rinkeby | mainnet to env.DC_NETWORK or in configOptions.blockchainNetwork`
     )
   }
-  return blockchainConfig
+  return blockchain !== "local"
+    ? blockchainConfig
+    : {
+        ...blockchainConfig,
+        web3HttpProviderUrl: customWeb3HttpProviderUrl,
+        getContracts: () =>
+          blockchainConfig.getContracts(customWeb3HttpProviderUrl)
+      }
 }
 let machineName
 try {
@@ -31,6 +39,7 @@ export interface IConfigOptions {
   blockchainNetwork?: BlockchainNetwork
   privateKey?: string
   platformId?: string
+  customWeb3HttpProviderUrl?: string
 }
 const envBlockchainNetwork: BlockchainNetwork =
   (process.env.DC_NETWORK as BlockchainNetwork) || "local"
@@ -44,10 +53,9 @@ const defaultConfig: IBaseConfig = {
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
   gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
   waitForConfirmations: 2,
-  DAppsPath: process.env.DAPPS_FULL_PATH || path.join(
-    path.resolve() || "",
-    process.env.DAPPS_PATH || "data/dapps"
-  ),
+  DAppsPath:
+    process.env.DAPPS_FULL_PATH ||
+    path.join(path.resolve() || "", process.env.DAPPS_PATH || "data/dapps"),
 
   signalServersSwarm: [
     //   "/dns4/signal4.dao.casino/tcp/443/wss/p2p-websocket-star/",
@@ -60,7 +68,10 @@ export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
   const baseConfig = { ...defaultConfig, ...configOptions }
   const result = {
     ...baseConfig,
-    ...getBlockChainConfig(baseConfig.blockchainNetwork)
+    ...getBlockChainConfig(
+      baseConfig.blockchainNetwork,
+      configOptions.customWeb3HttpProviderUrl
+    )
   }
 
   return result
