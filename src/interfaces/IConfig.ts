@@ -1,5 +1,4 @@
 import { BlockchainNetwork } from "../blockchainNetworks"
-
 interface ContractInfo {
   address: string
   abi: any[]
@@ -8,6 +7,13 @@ export interface Contracts {
   ERC20: ContractInfo
   Game?: ContractInfo
 }
+
+export enum TransportType {
+  IPFS = 1,
+  WS,
+  DIRECT
+}
+
 interface IBlockchainNetworkConfig {
   web3HttpProviderUrl: string
   waitForConfirmations?: number
@@ -34,7 +40,8 @@ interface IBaseConfig {
   minimumEth: number
   walletName: string
   DAppsPath: string
-  signalServersSwarm: string[]
+  transportServersSwarm: any // TODO: [key: TransportType enum]: string
+  transport: TransportType
 }
 
 export { ContractInfo, IConfig, IBlockchainNetworkConfig, IBaseConfig }
