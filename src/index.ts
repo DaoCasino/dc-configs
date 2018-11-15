@@ -2,7 +2,8 @@ import path from "path"
 import {
   IConfig,
   IBlockchainNetworkConfig,
-  IBaseConfig
+  IBaseConfig,
+  TransportType
 } from "./interfaces/IConfig"
 import os from "os"
 import {
@@ -57,13 +58,22 @@ const defaultConfig: IBaseConfig = {
     process.env.DAPPS_FULL_PATH ||
     path.join(path.resolve() || "", process.env.DAPPS_PATH || "data/dapps"),
 
-  signalServersSwarm: [
+  transportServersSwarm: {},
+  transport: TransportType.IPFS
+  }
+
+  defaultConfig.transportServersSwarm[TransportType.IPFS] = [
     //   "/dns4/signal4.dao.casino/tcp/443/wss/p2p-websocket-star/",
     "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
     "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
     "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
   ]
-}
+
+  defaultConfig.transportServersSwarm[TransportType.WS] = [
+    "ws://localhost:8888/"
+  ]
+
+
 export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
   const baseConfig = { ...defaultConfig, ...configOptions }
   const result = {
