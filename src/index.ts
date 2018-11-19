@@ -59,7 +59,8 @@ const defaultConfig: IBaseConfig = {
     path.join(path.resolve() || "", process.env.DAPPS_PATH || "data/dapps"),
 
   transportServersSwarm: {},
-  transport: TransportType.IPFS
+  transport: TransportType.IPFS,
+  waitForPeerTimeout: 30000
   }
 
   defaultConfig.transportServersSwarm[TransportType.IPFS] = [

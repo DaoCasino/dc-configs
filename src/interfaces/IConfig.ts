@@ -42,6 +42,7 @@ interface IBaseConfig {
   DAppsPath: string
   transportServersSwarm: any // TODO: [key: TransportType enum]: string
   transport: TransportType
+  waitForPeerTimeout: number // miliseconds
 }
 
 export { ContractInfo, IConfig, IBlockchainNetworkConfig, IBaseConfig }
