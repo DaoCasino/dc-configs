@@ -1,9 +1,8 @@
 import fetch from "cross-fetch"
 import { IBlockchainNetworkConfig, Contracts } from "./interfaces/IConfig"
 
-import ERC20Abi from "./jsonData/contractsABI/ERC20.json"
-
-import { Dice as GameAbi } from "./jsonData/Dice"
+import ERC20Abi from "./ABI/ERC20.json"
+import GameAbi from "./ABI/Game.json"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
