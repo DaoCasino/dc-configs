@@ -1,7 +1,9 @@
+import { ABIDefinition } from "./iAbi"
+
 import { BlockchainNetwork } from "../blockchainNetworks"
 interface ContractInfo {
   address: string
-  abi: any[]
+  abi: ABIDefinition[]
 }
 export interface Contracts {
   ERC20: ContractInfo

@@ -1,5 +1,7 @@
-{
-  "abi": [
+import { ABIDefinition } from "./interfaces/iAbi"
+
+
+export const Game:ABIDefinition[] = [
     {
       "constant": true,
       "inputs": [
@@ -30,7 +32,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0x11be1997"
     },
@@ -45,9 +46,7 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
-      "type": "function",
-      "signature": "0x4bde38c8"
+      "type": "function"
     },
     {
       "constant": true,
@@ -80,7 +79,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0x79502c55"
     },
@@ -136,7 +134,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0x7a7ebd7b"
     },
@@ -170,7 +167,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "pure",
       "type": "function",
       "signature": "0xada3e210"
     },
@@ -185,7 +181,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0xa12fa955"
     },
@@ -200,7 +195,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0xc9d4623f"
     },
@@ -215,7 +209,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0xca4b208b"
     },
@@ -230,7 +223,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0xdd754511"
     },
@@ -268,7 +260,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "pure",
       "type": "function",
       "signature": "0xe1e48c38"
     },
@@ -283,7 +274,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
       "type": "function",
       "signature": "0xfc0c546a"
     },
@@ -307,7 +297,6 @@
         }
       ],
       "payable": false,
-      "stateMutability": "nonpayable",
       "type": "constructor",
       "signature": "constructor"
     },
@@ -376,7 +365,6 @@
       "name": "openChannel",
       "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function",
       "signature": "0x3daace23"
     },
@@ -411,7 +399,6 @@
       "name": "updateChannel",
       "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function",
       "signature": "0x698b2fc5"
     },
@@ -446,7 +433,6 @@
       "name": "closeByConsent",
       "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function",
       "signature": "0x33f278e6"
     },
@@ -461,7 +447,6 @@
       "name": "closeByTime",
       "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function",
       "signature": "0xed784626"
     },
@@ -506,7 +491,6 @@
       "name": "openDispute",
       "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function",
       "signature": "0xfe95554c"
     },
@@ -533,9 +517,254 @@
       "name": "resolveDispute",
       "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function",
-      "signature": "0x64629522"
+      "type": "function"
     }
   ]
-}
+
+
+export const ERC20:ABIDefinition[] = [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_spender",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "acceptOwnership",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "newOwner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "name": "_spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "name": "remaining",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "faucet",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "tokenAddress",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferAnyERC20Token",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ]

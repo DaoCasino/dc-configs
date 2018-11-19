@@ -1,8 +1,7 @@
 import fetch from "cross-fetch"
 import { IBlockchainNetworkConfig, Contracts } from "./interfaces/IConfig"
 
-import ERC20Abi from "./ABI/ERC20.json"
-import GameAbi from "./ABI/Game.json"
+import {ERC20 as ERC20Abi, Game as GameAbi} from "./contractsABI"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
 
@@ -31,11 +30,11 @@ export const blockchainNetworkConfigs: Map<
           addresses => ({
             ERC20: {
               address: addresses.ERC20,
-              abi: ERC20Abi.abi
+              abi: ERC20Abi
             },
             Game: {
               address: addresses.Game,
-              abi: GameAbi.abi
+              abi: GameAbi
             }
           })
         )
@@ -56,7 +55,11 @@ export const blockchainNetworkConfigs: Map<
       getContracts: () => ({
         ERC20: {
           address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
-          abi: ERC20Abi.abi
+          abi: ERC20Abi
+        },
+        Game: {
+          address: "0x2d52802d5339EA8FBbDC21BA2ED651744dF8a6eA",
+          abi: GameAbi
         }
       })
     }
@@ -67,7 +70,7 @@ export const blockchainNetworkConfigs: Map<
       getContracts: () => ({
         ERC20: {
           address: "0x995cf44c0bdff07a9b6e171802cdc83d3c4add82",
-          abi: ERC20Abi.abi
+          abi: ERC20Abi
         }
       }),
       gasPrice: Number(process.env.GAS_PRICE) || 2000 * 1000 * 1000,
@@ -83,7 +86,7 @@ export const blockchainNetworkConfigs: Map<
       getContracts: () => ({
         ERC20: {
           address: "0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57",
-          abi: ERC20Abi.abi
+          abi: ERC20Abi
         }
       }),
       web3HttpProviderUrl: "https://infura.io/JCnK5ifEPH9qcQkX0Ahl"
