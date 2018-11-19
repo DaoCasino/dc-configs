@@ -21,15 +21,14 @@ interface IBlockchainNetworkConfig {
   waitForConfirmations?: number
   gasPrice?: number
   gasLimit?: number
-  getContracts: ((
-    web3HttpProviderUrl?: string
-  ) => Promise<Contracts> | Contracts)
+  contracts: Contracts
 }
 
 interface IConfig extends IBlockchainNetworkConfig, IBaseConfig {
   waitForConfirmations: number
   gasPrice: number
   gasLimit: number
+  contracts: Contracts
 }
 interface IBaseConfig {
   platformId: string
@@ -37,6 +36,7 @@ interface IBaseConfig {
   waitForConfirmations: number
   blockchainNetwork: BlockchainNetwork
   standartWalletPass: string
+  contracts: Contracts
   gasPrice: number
   gasLimit: number
   minimumEth: number
