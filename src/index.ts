@@ -108,6 +108,6 @@ if (!ConfigStore.default) {
 }
 export const config = ConfigStore
 
-export * from "./interfaces/IAbi"
+export * from "./interfaces/iAbi"
 export * from "./interfaces/IConfig"
 export * from "./blockchainNetworks"
