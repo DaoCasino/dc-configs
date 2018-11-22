@@ -2,13 +2,63 @@ import path from "path"
 import {
   IConfig,
   IBlockchainNetworkConfig,
-  IBaseConfig
+  IBaseConfig,
+  TransportType
 } from "./interfaces/IConfig"
 import os from "os"
 import {
   blockchainNetworkConfigs,
   BlockchainNetwork
 } from "./blockchainNetworks"
+
+
+let machineName
+try {
+  machineName = os.hostname()
+} catch (error) {}
+
+
+export interface IConfigOptions {
+  blockchainNetwork?: BlockchainNetwork
+  privateKey?: string
+  platformId?: string
+  customWeb3HttpProviderUrl?: string
+}
+
+const envBlockchainNetwork: BlockchainNetwork =
+  (process.env.DC_NETWORK as BlockchainNetwork) || "local"
+
+const defaultConfig: IBaseConfig = {
+  platformId: process.env.PLATFORM_ID || machineName || "DC_Platform",
+  privateKey: process.env.ACCOUNT_PRIVATE_KEY,
+  blockchainNetwork: envBlockchainNetwork,
+  standartWalletPass: process.env.STANDART_WALLET_PASS || "23WDSksiuuyto!",
+  minimumEth: 0.001,
+  walletName: "daocasino_wallet",
+  contracts: blockchainNetworkConfigs.get(envBlockchainNetwork).contracts,
+  gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
+  gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
+  waitForConfirmations: 2,
+  DAppsPath:
+    process.env.DAPPS_FULL_PATH ||
+    path.join(path.resolve() || "", process.env.DAPPS_PATH || "data/dapps"),
+
+  transportServersSwarm: {},
+  transport: TransportType.IPFS,
+  waitForPeerTimeout: 30000
+ }
+
+defaultConfig.transportServersSwarm[TransportType.IPFS] = [
+  //   "/dns4/signal4.dao.casino/tcp/443/wss/p2p-websocket-star/",
+  "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
+  "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
+  "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
+]
+
+defaultConfig.transportServersSwarm[TransportType.WS] = [
+  "ws://localhost:8888/"
+]
+
 
 export const getBlockChainConfig = (
   blockchain: BlockchainNetwork,
@@ -25,45 +75,10 @@ export const getBlockChainConfig = (
     ? blockchainConfig
     : {
         ...blockchainConfig,
-        web3HttpProviderUrl: customWeb3HttpProviderUrl,
-        getContracts: () =>
-          blockchainConfig.getContracts(customWeb3HttpProviderUrl)
+        web3HttpProviderUrl: customWeb3HttpProviderUrl
       }
 }
-let machineName
-try {
-  machineName = os.hostname()
-} catch (error) {}
 
-export interface IConfigOptions {
-  blockchainNetwork?: BlockchainNetwork
-  privateKey?: string
-  platformId?: string
-  customWeb3HttpProviderUrl?: string
-}
-const envBlockchainNetwork: BlockchainNetwork =
-  (process.env.DC_NETWORK as BlockchainNetwork) || "local"
-const defaultConfig: IBaseConfig = {
-  platformId: process.env.PLATFORM_ID || machineName || "DC_Platform",
-  privateKey: process.env.ACCOUNT_PRIVATE_KEY,
-  blockchainNetwork: envBlockchainNetwork,
-  standartWalletPass: process.env.STANDART_WALLET_PASS || "23WDSksiuuyto!",
-  minimumEth: 0.001,
-  walletName: "daocasino_wallet",
-  gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
-  gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
-  waitForConfirmations: 2,
-  DAppsPath:
-    process.env.DAPPS_FULL_PATH ||
-    path.join(path.resolve() || "", process.env.DAPPS_PATH || "data/dapps"),
-
-  signalServersSwarm: [
-    //   "/dns4/signal4.dao.casino/tcp/443/wss/p2p-websocket-star/",
-    "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
-    "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
-    "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
-  ]
-}
 export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
   const baseConfig = { ...defaultConfig, ...configOptions }
   const result = {
@@ -76,9 +91,12 @@ export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
 
   return result
 }
+
+
 class ConfigStore {
   static default: IConfig
 }
+
 export const setDefaultConfig = (configOptions: IConfigOptions = {}) => {
   const result = getConfig(configOptions)
   ConfigStore.default = result
@@ -90,5 +108,6 @@ if (!ConfigStore.default) {
 }
 export const config = ConfigStore
 
+export * from "./interfaces/iAbi"
 export * from "./interfaces/IConfig"
 export * from "./blockchainNetworks"

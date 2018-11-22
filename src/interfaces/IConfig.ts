@@ -1,27 +1,34 @@
-import { BlockchainNetwork } from "../blockchainNetworks"
+import { ABIDefinition } from "./iAbi"
 
+import { BlockchainNetwork } from "../blockchainNetworks"
 interface ContractInfo {
   address: string
-  abi: any[]
+  abi: ABIDefinition[]
 }
 export interface Contracts {
   ERC20: ContractInfo
   Game?: ContractInfo
 }
+
+export enum TransportType {
+  IPFS = 1,
+  WS,
+  DIRECT
+}
+
 interface IBlockchainNetworkConfig {
   web3HttpProviderUrl: string
   waitForConfirmations?: number
   gasPrice?: number
   gasLimit?: number
-  getContracts: ((
-    web3HttpProviderUrl?: string
-  ) => Promise<Contracts> | Contracts)
+  contracts: Contracts
 }
 
 interface IConfig extends IBlockchainNetworkConfig, IBaseConfig {
   waitForConfirmations: number
   gasPrice: number
   gasLimit: number
+  contracts: Contracts
 }
 interface IBaseConfig {
   platformId: string
@@ -29,12 +36,15 @@ interface IBaseConfig {
   waitForConfirmations: number
   blockchainNetwork: BlockchainNetwork
   standartWalletPass: string
+  contracts: Contracts
   gasPrice: number
   gasLimit: number
   minimumEth: number
   walletName: string
   DAppsPath: string
-  signalServersSwarm: string[]
+  transportServersSwarm: any // TODO: [key: TransportType enum]: string
+  transport: TransportType
+  waitForPeerTimeout: number // miliseconds
 }
 
 export { ContractInfo, IConfig, IBlockchainNetworkConfig, IBaseConfig }
