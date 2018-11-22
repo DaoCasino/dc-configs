@@ -41,7 +41,7 @@ export const blockchainNetworkConfigs: Map<
           abi: ERC20Abi
         },
         Game: {
-          address: "0x2d52802d5339EA8FBbDC21BA2ED651744dF8a6eA",
+          address: "0x76acfE4A87381E6Ff1B5c68d404CD49837f53184",
           abi: GameAbi
         }
       }
