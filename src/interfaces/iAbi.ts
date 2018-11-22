@@ -1,4 +1,4 @@
-type ABIDataTypes = "tuple" | "uint256" | "boolean" | "string" | "bytes" | string // TODO complete list
+type ABIDataTypes = "tuple" | "uint256" | "boolean" | "string" | "bytes" | string
 
 
 export interface AbiIO {
@@ -11,6 +11,7 @@ export interface AbiIO {
 export interface ABIDefinition {
     constant?: boolean
     payable?: boolean
+    stateMutability?: "view" | "pure" | "nonpayable"
     anonymous?: boolean
     inputs?: AbiIO[]
     name?: string

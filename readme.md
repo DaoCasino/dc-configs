@@ -19,3 +19,15 @@ See the [IConfig.ts](https://github.com/DaoCasino/dc-monorepo/blob/development/p
 |process.env.PUBLIC_URL|URL for game access|URL|
 |process.env.GRAYLOG_HOST|Host and port for logging|`Host:URL, PORT:port_number` or function calling antoher variable (e.g. process.evn.HOST and a dedicated port for logging)|
 
+## Current ropsten contracts
+  - Game - https://ropsten.etherscan.io/address/0x76acfE4A87381E6Ff1B5c68d404CD49837f53184
+
+  - ERC20 - https://ropsten.etherscan.io/address/0x5D1E47F703729fc87FdB9bA5C20fE4c1b7c7bf57
+
+  - Utils - https://ropsten.etherscan.io/address/0xEB1CE2Cf5f5963f2CC55250E912020379BB4663f
+
+  - Platform - https://ropsten.etherscan.io/address/0xC60B670764306d47a6406aA54624a37162a71F6f
+
+  - GamEngine - https://ropsten.etherscan.io/address/0xb207655F0Ad663EaFd00EcD60011f8404A82F9f7
+
+  - Signidice - https://ropsten.etherscan.io/address/0x976410107BacA081a5B0C8CA47eb6F72d80ba8bc
