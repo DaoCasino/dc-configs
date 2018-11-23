@@ -18,6 +18,7 @@ export const blockchainNetworkConfigs: Map<
           abi: ERC20Abi
         },
         Game: {
+          address: '0x2C2B9C9a4a25e24B174f26114e8926a9f2128FE4', // "http://127.0.0.1:8545/contracts->Game",
           abi: GameAbi
         }
       },
@@ -40,6 +41,7 @@ export const blockchainNetworkConfigs: Map<
           abi: ERC20Abi
         },
         Game: {
+          address: "0x76acfE4A87381E6Ff1B5c68d404CD49837f53184",
           abi: GameAbi
         }
       }
