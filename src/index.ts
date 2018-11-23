@@ -20,6 +20,7 @@ try {
 
 export interface IConfigOptions {
   blockchainNetwork?: BlockchainNetwork
+  transport?: TransportType
   privateKey?: string
   platformId?: string
   customWeb3HttpProviderUrl?: string
