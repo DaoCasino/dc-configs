@@ -11,12 +11,10 @@ import {
   BlockchainNetwork
 } from "./blockchainNetworks"
 
-
 let machineName
 try {
   machineName = os.hostname()
 } catch (error) {}
-
 
 export interface IConfigOptions {
   blockchainNetwork?: BlockchainNetwork
@@ -48,7 +46,7 @@ const defaultConfig: IBaseConfig = {
   transportServersSwarm: {},
   transport: TransportType.IPFS,
   waitForPeerTimeout: 30000
- }
+}
 
 defaultConfig.transportServersSwarm[TransportType.IPFS] = [
   //   "/dns4/signal4.dao.casino/tcp/443/wss/p2p-websocket-star/",
@@ -57,10 +55,7 @@ defaultConfig.transportServersSwarm[TransportType.IPFS] = [
   "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
 ]
 
-defaultConfig.transportServersSwarm[TransportType.WS] = [
-  "ws://localhost:8888/"
-]
-
+defaultConfig.transportServersSwarm[TransportType.WS] = ["ws://localhost:8888/"]
 
 export const getBlockChainConfig = (
   blockchain: BlockchainNetwork,
@@ -73,7 +68,7 @@ export const getBlockChainConfig = (
       Please put one of local | ropsten | rinkeby | mainnet to env.DC_NETWORK or in configOptions.blockchainNetwork`
     )
   }
-  return blockchain !== "local"
+  return blockchain !== "local" || !customWeb3HttpProviderUrl
     ? blockchainConfig
     : {
         ...blockchainConfig,
@@ -93,7 +88,6 @@ export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
 
   return result
 }
-
 
 class ConfigStore {
   static default: IConfig
