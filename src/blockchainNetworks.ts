@@ -1,9 +1,8 @@
 import { IBlockchainNetworkConfig, Contracts } from "./interfaces/IConfig"
 
-import {ERC20 as ERC20Abi, Game as GameAbi} from "./contractsABI"
+import { ERC20 as ERC20Abi, Game as GameAbi } from "./contractsABI"
 
 export type BlockchainNetwork = "local" | "ropsten" | "rinkeby" | "mainnet"
-
 
 export const blockchainNetworkConfigs: Map<
   BlockchainNetwork,
@@ -14,11 +13,11 @@ export const blockchainNetworkConfigs: Map<
     {
       contracts: {
         ERC20: {
-          address: '0xF12b5dd4EAD5F743C6BaA640B0216200e89B60Da', // "http://127.0.0.1:8545/contracts->ERC20",
+          address: "0xF12b5dd4EAD5F743C6BaA640B0216200e89B60Da", // "http://127.0.0.1:8545/contracts->ERC20",
           abi: ERC20Abi
         },
         Game: {
-          address: '0x2C2B9C9a4a25e24B174f26114e8926a9f2128FE4', // "http://127.0.0.1:8545/contracts->Game",
+          address: "0x2C2B9C9a4a25e24B174f26114e8926a9f2128FE4", // "http://127.0.0.1:8545/contracts->Game",
           abi: GameAbi
         }
       },
@@ -54,6 +53,10 @@ export const blockchainNetworkConfigs: Map<
         ERC20: {
           address: "0x995cf44c0bdff07a9b6e171802cdc83d3c4add82",
           abi: ERC20Abi
+        },
+        Game: {
+          address: "0xCD184E71b763d86d4766cbA902B0d34DF4BA0c16",
+          abi: GameAbi
         }
       },
       gasPrice: Number(process.env.GAS_PRICE) || 2000 * 1000 * 1000,
