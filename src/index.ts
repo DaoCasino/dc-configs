@@ -21,7 +21,8 @@ export interface IConfigOptions {
   transport?: TransportType
   privateKey?: string
   platformId?: string
-  customWeb3HttpProviderUrl?: string
+  customWeb3HttpProviderUrl?: string,
+  DAppsPath?: string
 }
 
 const envBlockchainNetwork: BlockchainNetwork =
