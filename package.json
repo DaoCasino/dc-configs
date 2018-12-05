@@ -1,6 +1,6 @@
 {
   "name": "dc-configs",
-  "version": "0.1.23",
+  "version": "0.1.45",
   "description": "DAO.Casino configurations",
   "main": "./lib/index",
   "scripts": {
@@ -20,5 +20,5 @@
     "tslint": "5.11.0",
     "typescript": "^3.1.2"
   },
-  "gitHead": "3e5dcaecc303cdce6b606ab1fc570c530592eef4"
+  "gitHead": "c83ce2ab1c77daa4fabf666260b0698d37dbf312"
 }
