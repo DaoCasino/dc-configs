@@ -13,7 +13,8 @@ export interface Contracts {
 export enum TransportType {
   IPFS = 1,
   WS,
-  DIRECT
+  DIRECT,
+  LIBP2P
 }
 
 interface IBlockchainNetworkConfig {

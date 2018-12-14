@@ -28,6 +28,8 @@ export interface IConfigOptions {
 const envBlockchainNetwork: BlockchainNetwork =
   (process.env.DC_NETWORK as BlockchainNetwork) || "local"
 
+const envTransportType: TransportType = TransportType[process.env.DC_TRANSPORT] || TransportType.IPFS
+
 const defaultConfig: IBaseConfig = {
   platformId: process.env.PLATFORM_ID || machineName || "DC_Platform",
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
@@ -44,7 +46,7 @@ const defaultConfig: IBaseConfig = {
     path.join(path.resolve() || "", process.env.DAPPS_PATH || "data/dapps"),
 
   transportServersSwarm: {},
-  transport: TransportType.IPFS,
+  transport: envTransportType,
   waitForPeerTimeout: 30000
 }
 
@@ -56,6 +58,7 @@ defaultConfig.transportServersSwarm[TransportType.IPFS] = [
 ]
 
 defaultConfig.transportServersSwarm[TransportType.WS] = ["ws://localhost:8888/"]
+defaultConfig.transportServersSwarm[TransportType.LIBP2P] = ["/ip4/0.0.0.0/tcp/0"]
 
 export const getBlockChainConfig = (
   blockchain: BlockchainNetwork,
