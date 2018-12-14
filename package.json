@@ -1,5 +1,5 @@
 {
-  "name": "dc-configs",
+  "name": "@daocasino/dc-configs",
   "version": "0.2.0",
   "description": "DAO.Casino configurations",
   "main": "./lib/index",
