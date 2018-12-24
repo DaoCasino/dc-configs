@@ -4,20 +4,6 @@ import { ABIDefinition } from "./interfaces/iAbi"
 export const Game:ABIDefinition[] = [
   {
     "constant": true,
-    "inputs": [],
-    "name": "name",
-    "outputs": [
-      {
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
     "inputs": [
       {
         "name": "",
@@ -64,84 +50,6 @@ export const Game:ABIDefinition[] = [
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      },
-      {
-        "name": "_session",
-        "type": "uint256"
-      },
-      {
-        "name": "_disputeBets",
-        "type": "uint256[]"
-      },
-      {
-        "components": [
-          {
-            "name": "playerNumber",
-            "type": "uint256"
-          },
-          {
-            "name": "randomRanges",
-            "type": "uint256[2][]"
-          },
-          {
-            "name": "seed",
-            "type": "bytes32"
-          }
-        ],
-        "name": "_gameData",
-        "type": "tuple"
-      },
-      {
-        "name": "_signature",
-        "type": "bytes"
-      }
-    ],
-    "name": "openDispute",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      },
-      {
-        "name": "_playerBalance",
-        "type": "uint256"
-      },
-      {
-        "name": "_bankrollerBalance",
-        "type": "uint256"
-      },
-      {
-        "name": "_totalBet",
-        "type": "uint256"
-      },
-      {
-        "name": "_session",
-        "type": "uint256"
-      },
-      {
-        "name": "_sign",
-        "type": "bytes"
-      }
-    ],
-    "name": "closeByConsent",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "platform",
@@ -153,66 +61,6 @@ export const Game:ABIDefinition[] = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      },
-      {
-        "name": "_N",
-        "type": "bytes"
-      },
-      {
-        "name": "_E",
-        "type": "bytes"
-      },
-      {
-        "name": "_rsaSignature",
-        "type": "bytes"
-      }
-    ],
-    "name": "resolveDispute",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      },
-      {
-        "name": "_playerBalance",
-        "type": "uint256"
-      },
-      {
-        "name": "_bankrollerBalance",
-        "type": "uint256"
-      },
-      {
-        "name": "_totalBet",
-        "type": "uint256"
-      },
-      {
-        "name": "_session",
-        "type": "uint256"
-      },
-      {
-        "name": "_signature",
-        "type": "bytes"
-      }
-    ],
-    "name": "updateChannel",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -311,52 +159,6 @@ export const Game:ABIDefinition[] = [
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      },
-      {
-        "name": "_player",
-        "type": "address"
-      },
-      {
-        "name": "_bankroller",
-        "type": "address"
-      },
-      {
-        "name": "_playerBalance",
-        "type": "uint256"
-      },
-      {
-        "name": "_bankrollerBalance",
-        "type": "uint256"
-      },
-      {
-        "name": "_openingBlock",
-        "type": "uint256"
-      },
-      {
-        "name": "_N",
-        "type": "bytes"
-      },
-      {
-        "name": "_E",
-        "type": "bytes"
-      },
-      {
-        "name": "_signature",
-        "type": "bytes"
-      }
-    ],
-    "name": "openChannel",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -467,20 +269,6 @@ export const Game:ABIDefinition[] = [
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_id",
-        "type": "bytes32"
-      }
-    ],
-    "name": "closeByTime",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
     "name": "bankrollReward",
@@ -563,17 +351,201 @@ export const Game:ABIDefinition[] = [
     "type": "event"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "getName",
-    "outputs": [
+    "constant": false,
+    "inputs": [
       {
-        "name": "",
-        "type": "string"
+        "name": "_id",
+        "type": "bytes32"
+      },
+      {
+        "name": "_player",
+        "type": "address"
+      },
+      {
+        "name": "_bankroller",
+        "type": "address"
+      },
+      {
+        "name": "_playerBalance",
+        "type": "uint256"
+      },
+      {
+        "name": "_bankrollerBalance",
+        "type": "uint256"
+      },
+      {
+        "name": "_openingBlock",
+        "type": "uint256"
+      },
+      {
+        "name": "_N",
+        "type": "bytes"
+      },
+      {
+        "name": "_E",
+        "type": "bytes"
+      },
+      {
+        "name": "_signature",
+        "type": "bytes"
       }
     ],
+    "name": "openChannel",
+    "outputs": [],
     "payable": false,
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "bytes32"
+      },
+      {
+        "name": "_playerBalance",
+        "type": "uint256"
+      },
+      {
+        "name": "_bankrollerBalance",
+        "type": "uint256"
+      },
+      {
+        "name": "_totalBet",
+        "type": "uint256"
+      },
+      {
+        "name": "_session",
+        "type": "uint256"
+      },
+      {
+        "name": "_signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "updateChannel",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "bytes32"
+      },
+      {
+        "name": "_playerBalance",
+        "type": "uint256"
+      },
+      {
+        "name": "_bankrollerBalance",
+        "type": "uint256"
+      },
+      {
+        "name": "_totalBet",
+        "type": "uint256"
+      },
+      {
+        "name": "_session",
+        "type": "uint256"
+      },
+      {
+        "name": "_sign",
+        "type": "bytes"
+      }
+    ],
+    "name": "closeByConsent",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "bytes32"
+      }
+    ],
+    "name": "closeByTime",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "bytes32"
+      },
+      {
+        "name": "_session",
+        "type": "uint256"
+      },
+      {
+        "name": "_disputeBets",
+        "type": "uint256[]"
+      },
+      {
+        "components": [
+          {
+            "name": "playerNumber",
+            "type": "uint256"
+          },
+          {
+            "name": "randomRanges",
+            "type": "uint256[2][]"
+          },
+          {
+            "name": "seed",
+            "type": "bytes32"
+          }
+        ],
+        "name": "_gameData",
+        "type": "tuple"
+      },
+      {
+        "name": "_signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "openDispute",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "bytes32"
+      },
+      {
+        "name": "_N",
+        "type": "bytes"
+      },
+      {
+        "name": "_E",
+        "type": "bytes"
+      },
+      {
+        "name": "_rsaSignature",
+        "type": "bytes"
+      }
+    ],
+    "name": "resolveDispute",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]
