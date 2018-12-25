@@ -28,7 +28,7 @@ export interface IConfigOptions {
 const envBlockchainNetwork: BlockchainNetwork =
   (process.env.DC_NETWORK as BlockchainNetwork) || "local"
 
-const envTransportType: TransportType = TransportType[process.env.DC_TRANSPORT] || TransportType.IPFS
+const envTransportType: TransportType = TransportType[process.env.DC_TRANSPORT] || TransportType.LIBP2P
 
 const defaultConfig: IBaseConfig = {
   platformId: process.env.PLATFORM_ID || machineName || "DC_Platform",
@@ -51,14 +51,19 @@ const defaultConfig: IBaseConfig = {
 }
 
 defaultConfig.transportServersSwarm[TransportType.IPFS] = [
-  //   "/dns4/signal4.dao.casino/tcp/443/wss/p2p-websocket-star/",
   "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
   "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
   "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
 ]
 
 defaultConfig.transportServersSwarm[TransportType.WS] = ["ws://localhost:8888/"]
-defaultConfig.transportServersSwarm[TransportType.LIBP2P] = ["/ip4/0.0.0.0/tcp/0"]
+
+defaultConfig.transportServersSwarm[TransportType.LIBP2P] = [
+  "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
+  "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
+  "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/",
+  "/ip4/0.0.0.0/tcp/0"
+]
 
 export const getBlockChainConfig = (
   blockchain: BlockchainNetwork,
