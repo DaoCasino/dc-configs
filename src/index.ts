@@ -50,20 +50,16 @@ const defaultConfig: IBaseConfig = {
   waitForPeerTimeout: 30000
 }
 
-defaultConfig.transportServersSwarm[TransportType.IPFS] = [
+const signals = [
   "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
   "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
   "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
 ]
 
 defaultConfig.transportServersSwarm[TransportType.WS] = ["ws://localhost:8888/"]
-
-defaultConfig.transportServersSwarm[TransportType.LIBP2P] = [
-  "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
-  "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
-  "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/",
-  "/ip4/0.0.0.0/tcp/0"
-]
+defaultConfig.transportServersSwarm[TransportType.IPFS] = signals
+defaultConfig.transportServersSwarm[TransportType.LIBP2P] = signals
+// .concat(["/ip4/0.0.0.0/tcp/0"])
 
 export const getBlockChainConfig = (
   blockchain: BlockchainNetwork,
