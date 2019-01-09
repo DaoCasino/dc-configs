@@ -22,7 +22,8 @@ export interface IConfigOptions {
   privateKey?: string
   platformId?: string
   customWeb3HttpProviderUrl?: string,
-  DAppsPath?: string
+  DAppsPath?: string,
+  statisticsAuthKey?: string
 }
 
 const envBlockchainNetwork: BlockchainNetwork =
