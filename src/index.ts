@@ -1,20 +1,14 @@
-import path from "path"
-import {
-  IConfig,
-  IBlockchainNetworkConfig,
-  IBaseConfig,
-  TransportType
-} from "./interfaces/IConfig"
-import os from "os"
-import {
-  blockchainNetworkConfigs,
-  BlockchainNetwork
-} from "./blockchainNetworks"
+import path from 'path'
+import { IBaseConfig, IBlockchainNetworkConfig, IConfig, TransportType } from './interfaces/IConfig'
+import os from 'os'
+import { BlockchainNetwork, blockchainNetworkConfigs } from './blockchainNetworks'
 
 let machineName
 try {
   machineName = os.hostname()
-} catch (error) {}
+} catch (error) {
+  console.log(error)
+}
 
 export interface IConfigOptions {
   blockchainNetwork?: BlockchainNetwork
@@ -28,37 +22,42 @@ export interface IConfigOptions {
 }
 
 const envBlockchainNetwork: BlockchainNetwork =
-  (process.env.DC_NETWORK as BlockchainNetwork) || "local"
+  (process.env.DC_NETWORK as BlockchainNetwork) || 'local'
 
 const envTransportType: TransportType = TransportType[process.env.DC_TRANSPORT] || TransportType.LIBP2P
 
 const defaultConfig: IBaseConfig = {
-  platformId: process.env.PLATFORM_ID || machineName || "DC_Platform",
+  platformId: process.env.PLATFORM_ID || machineName || 'DC_Platform',
   privateKey: process.env.ACCOUNT_PRIVATE_KEY,
   blockchainNetwork: envBlockchainNetwork,
-  standartWalletPass: process.env.STANDART_WALLET_PASS || "23WDSksiuuyto!",
+  standartWalletPass: process.env.STANDART_WALLET_PASS || '23WDSksiuuyto!',
   minimumEth: 0.001,
-  walletName: "daocasino_wallet",
+  walletName: 'daocasino_wallet',
   contracts: blockchainNetworkConfigs.get(envBlockchainNetwork).contracts,
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
   gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
   waitForConfirmations: 2,
   DAppsPath:
     process.env.DAPPS_FULL_PATH ||
-    path.join(path.resolve() || "", process.env.DAPPS_PATH || "data/dapps"),
+    path.join(path.resolve() || '', process.env.DAPPS_PATH || 'data/dapps'),
 
   transportServersSwarm: {},
   transport: envTransportType,
-  waitForPeerTimeout: 30000
+  waitForPeerTimeout: 30000,
+  statisticsServer: {
+    authKey: process.env.STAT_SERV_AUTH || undefined,
+    host: process.env.STAT_SERV_HOST || undefined,
+    protocol: process.env.STAT_SERV_PROTOCOL || undefined
+  }
 }
 
 const signals = [
-  "/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/",
-  "/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/",
-  "/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/"
+  '/dns4/signal1.dao.casino/tcp/443/wss/p2p-websocket-star/',
+  '/dns4/signal2.dao.casino/tcp/443/wss/p2p-websocket-star/',
+  '/dns4/signal3.dao.casino/tcp/443/wss/p2p-websocket-star/'
 ]
 
-defaultConfig.transportServersSwarm[TransportType.WS] = ["ws://localhost:8888/"]
+defaultConfig.transportServersSwarm[TransportType.WS] = ['ws://localhost:8888/']
 defaultConfig.transportServersSwarm[TransportType.IPFS] = signals
 defaultConfig.transportServersSwarm[TransportType.LIBP2P] = signals
 // .concat(["/ip4/0.0.0.0/tcp/0"])
@@ -74,12 +73,12 @@ export const getBlockChainConfig = (
       Please put one of local | ropsten | rinkeby | mainnet to env.DC_NETWORK or in configOptions.blockchainNetwork`
     )
   }
-  return blockchain !== "local" || !customWeb3HttpProviderUrl
+  return blockchain !== 'local' || !customWeb3HttpProviderUrl
     ? blockchainConfig
     : {
-        ...blockchainConfig,
-        web3HttpProviderUrl: customWeb3HttpProviderUrl
-      }
+      ...blockchainConfig,
+      web3HttpProviderUrl: customWeb3HttpProviderUrl
+    }
 }
 
 export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
@@ -110,6 +109,6 @@ if (!ConfigStore.default) {
 }
 export const config = ConfigStore
 
-export * from "./interfaces/iAbi"
-export * from "./interfaces/IConfig"
-export * from "./blockchainNetworks"
+export * from './interfaces/iAbi'
+export * from './interfaces/IConfig'
+export * from './blockchainNetworks'
