@@ -27,6 +27,10 @@ interface IBlockchainNetworkConfig {
   contracts: Contracts
 }
 
+interface ISentry {
+  dsn: string
+}
+
 interface IConfig extends IBlockchainNetworkConfig, IBaseConfig {
   waitForConfirmations: number
   gasPrice: number
@@ -53,7 +57,8 @@ interface IBaseConfig {
     authKey: string,
     host: string,
     protocol: string
-  }
+  },
+  sentry: ISentry
 }
 
 export { ContractInfo, IConfig, IBlockchainNetworkConfig, IBaseConfig }
