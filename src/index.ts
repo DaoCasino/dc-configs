@@ -37,9 +37,10 @@ const defaultConfig: IBaseConfig = {
   gasPrice: Number(process.env.GAS_PRICE) || 40 * 1000000000,
   gasLimit: Number(process.env.GAS_LIMIT) || 40 * 100000,
   waitForConfirmations: 2,
-  DAppsPath:
-    process.env.DAPPS_FULL_PATH ||
-    path.join(path.resolve() || '', process.env.DAPPS_PATH || 'data/dapps'),
+  DAppsPath: (
+    process.env.DAPPS_FULL_PATH
+    || path.join(path.resolve() || '', process.env.DAPPS_PATH || 'data/dapps')
+  ),
 
   transportServersSwarm: {},
   transport: envTransportType,
@@ -48,6 +49,9 @@ const defaultConfig: IBaseConfig = {
     authKey: process.env.STAT_SERV_AUTH || undefined,
     host: process.env.STAT_SERV_HOST || undefined,
     protocol: process.env.STAT_SERV_PROTOCOL || undefined
+  },
+  sentry: {
+    dsn: process.env.SENTRY_DSN || undefined
   }
 }
 
@@ -62,7 +66,7 @@ defaultConfig.transportServersSwarm[TransportType.IPFS] = signals
 defaultConfig.transportServersSwarm[TransportType.LIBP2P] = signals
 // .concat(["/ip4/0.0.0.0/tcp/0"])
 
-export const getBlockChainConfig = (
+const getBlockChainConfig = (
   blockchain: BlockchainNetwork,
   customWeb3HttpProviderUrl: string = process.env.CUSTOM_WEB3_PROVIDER_URL
 ): IBlockchainNetworkConfig => {
@@ -83,15 +87,13 @@ export const getBlockChainConfig = (
 
 export const getConfig = (configOptions: IConfigOptions = {}): IConfig => {
   const baseConfig = { ...defaultConfig, ...configOptions }
-  const result = {
+  return {
     ...baseConfig,
     ...getBlockChainConfig(
       baseConfig.blockchainNetwork,
       configOptions.customWeb3HttpProviderUrl
     )
   }
-
-  return result
 }
 
 class ConfigStore {
