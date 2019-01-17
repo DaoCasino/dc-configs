@@ -1,10 +1,12 @@
-import { ABIDefinition } from "./iAbi"
+import { ABIDefinition } from './iAbi'
 
-import { BlockchainNetwork } from "../blockchainNetworks"
+import { BlockchainNetwork } from '../blockchainNetworks'
+
 interface ContractInfo {
   address: string
   abi: ABIDefinition[]
 }
+
 export interface Contracts {
   ERC20: ContractInfo
   Game?: ContractInfo
@@ -25,12 +27,17 @@ interface IBlockchainNetworkConfig {
   contracts: Contracts
 }
 
+interface ISentry {
+  dsn: string
+}
+
 interface IConfig extends IBlockchainNetworkConfig, IBaseConfig {
   waitForConfirmations: number
   gasPrice: number
   gasLimit: number
   contracts: Contracts
 }
+
 interface IBaseConfig {
   platformId: string
   privateKey: string
@@ -46,6 +53,12 @@ interface IBaseConfig {
   transportServersSwarm: any // TODO: [key: TransportType enum]: string
   transport: TransportType
   waitForPeerTimeout: number // miliseconds
+  statisticsServer: {
+    authKey: string,
+    host: string,
+    protocol: string
+  },
+  sentry: ISentry
 }
 
 export { ContractInfo, IConfig, IBlockchainNetworkConfig, IBaseConfig }
