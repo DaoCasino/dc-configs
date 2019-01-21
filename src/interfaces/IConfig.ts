@@ -50,6 +50,7 @@ interface IBaseConfig {
   minimumEth: number
   walletName: string
   DAppsPath: string
+  blockchainType?: string
   transportServersSwarm: any // TODO: [key: TransportType enum]: string
   transport: TransportType
   waitForPeerTimeout: number // miliseconds
